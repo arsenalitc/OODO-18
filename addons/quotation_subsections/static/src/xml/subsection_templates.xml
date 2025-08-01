@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    
+    <t t-name="quotation_subsections.SubsectionTotalField" owl="1">
+        <span class="o_field_monetary o_subsection_total" t-att-title="props.value">
+            <t t-esc="formattedValue"/>
+        </span>
+    </t>
+
+</templates>

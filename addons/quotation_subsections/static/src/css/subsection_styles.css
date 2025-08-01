@@ -1,0 +1,30 @@
+/* Styles for quotation subsections */
+
+.o_form_view .o_field_one2many .o_list_view tr[data-display-type="line_subsection"] {
+    background-color: #f8f9fa !important;
+    font-weight: bold;
+    border-left: 3px solid #007bff;
+}
+
+.o_form_view .o_field_one2many .o_list_view tr[data-display-type="line_section"] {
+    background-color: #e9ecef !important;
+    font-weight: bold;
+    border-left: 4px solid #28a745;
+}
+
+.o_form_view .o_field_one2many .o_list_view tr[data-display-type="line_subsection"] td {
+    padding-left: 20px;
+}
+
+/* Report styles */
+.o_report_layout_standard .is-subtotal {
+    border-top: 1px solid #dee2e6;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.o_report_layout_standard .subsection-total {
+    background-color: #f8f9fa;
+    font-weight: bold;
+    padding: 8px;
+    border-left: 3px solid #007bff;
+}

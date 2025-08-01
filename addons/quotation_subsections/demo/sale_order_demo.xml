@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Demo Sale Order with Sections and Subsections -->
+        <record id="demo_sale_order_subsections" model="sale.order">
+            <field name="name">SO001 - Demo Order with Subsections</field>
+            <field name="partner_id" ref="base.res_partner_2"/>
+            <field name="date_order" eval="DateTime.today()"/>
+            <field name="state">draft</field>
+        </record>
+
+        <!-- Main Section: Hardware -->
+        <record id="demo_line_section_hardware" model="sale.order.line">
+            <field name="order_id" ref="demo_sale_order_subsections"/>
+            <field name="display_type">line_section</field>
+            <field name="name">Hardware Components</field>
+            <field name="sequence">10</field>
+        </record>
+
+        <!-- Subsection: Servers -->
+        <record id="demo_line_subsection_servers" model="sale.order.line">
+            <field name="order_id" ref="demo_sale_order_subsections"/>
+            <field name="display_type">line_subsection</field>
+            <field name="name">Servers</field>
+            <field name="parent_section_id" ref="demo_line_section_hardware"/>
+            <field name="sequence">20</field>
+        </record>
+
+        <!-- Product under Servers subsection -->
+        <record id="demo_line_server1" model="sale.order.line">
+            <field name="order_id" ref="demo_sale_order_subsections"/>
+            <field name="product_id" ref="product.product_product_27"/>
+            <field name="name">Dell PowerEdge Server</field>
+            <field name="product_uom_qty">2</field>
+            <field name="price_unit">5000.00</field>
+            <field name="sequence">30</field>
+        </record>
+
+        <record id="demo_line_server2" model="sale.order.line">
+            <field name="order_id" ref="demo_sale_order_subsections"/>
+            <field name="product_id" ref="product.product_product_25"/>
+            <field name="name">HP ProLiant Server</field>
+            <field name="product_uom_qty">1</field>
+            <field name="price_unit">3500.00</field>
+            <field name="sequence">40</field>
+        </record>
+
+        <!-- Subsection: Networking -->
+        <record id="demo_line_subsection_networking" model="sale.order.line">
+            <field name="order_id" ref="demo_sale_order_subsections"/>
+            <field name="display_type">line_subsection</field>
+            <field name="name">Networking Equipment</field>
+            <field name="parent_section_id" ref="demo_line_section_hardware"/>
+            <field name="sequence">50</field>
+        </record>
+
+        <!-- Products under Networking subsection -->
+        <record id="demo_line_switch" model="sale.order.line">
+            <field name="order_id" ref="demo_sale_order_subsections"/>
+            <field name="product_id" ref="product.product_product_11"/>
+            <field name="name">Cisco 48-Port Switch</field>
+            <field name="product_uom_qty">3</field>
+            <field name="price_unit">800.00</field>
+            <field name="sequence">60</field>
+        </record>
+
+        <record id="demo_line_router" model="sale.order.line">
+            <field name="order_id" ref="demo_sale_order_subsections"/>
+            <field name="product_id" ref="product.product_product_13"/>
+            <field name="name">Enterprise Router</field>
+            <field name="product_uom_qty">1</field>
+            <field name="price_unit">1200.00</field>
+            <field name="sequence">70</field>
+        </record>
+
+        <!-- Main Section: Software -->
+        <record id="demo_line_section_software" model="sale.order.line">
+            <field name="order_id" ref="demo_sale_order_subsections"/>
+            <field name="display_type">line_section</field>
+            <field name="name">Software Licenses</field>
+            <field name="sequence">80</field>
+        </record>
+
+        <!-- Subsection: Operating Systems -->
+        <record id="demo_line_subsection_os" model="sale.order.line">
+            <field name="order_id" ref="demo_sale_order_subsections"/>
+            <field name="display_type">line_subsection</field>
+            <field name="name">Operating Systems</field>
+            <field name="parent_section_id" ref="demo_line_section_software"/>
+            <field name="sequence">90</field>
+        </record>
+
+        <!-- Products under OS subsection -->
+        <record id="demo_line_windows" model="sale.order.line">
+            <field name="order_id" ref="demo_sale_order_subsections"/>
+            <field name="product_id" ref="product.product_product_1"/>
+            <field name="name">Windows Server License</field>
+            <field name="product_uom_qty">5</field>
+            <field name="price_unit">500.00</field>
+            <field name="sequence">100</field>
+        </record>
+
+    </data>
+</odoo>

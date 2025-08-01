@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Extend Sale Order Form View -->
+    <record id="view_order_form_subsection" model="ir.ui.view">
+        <field name="name">sale.order.form.subsection</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <!-- Add subsection option to the order lines -->
+            <xpath expr="//field[@name='order_line']/tree//field[@name='display_type']" position="attributes">
+                <attribute name="selection">[('line_section', 'Section'), ('line_subsection', 'Subsection'), ('line_note', 'Note')]</attribute>
+            </xpath>
+            
+            <!-- Add parent section field for subsections -->
+            <xpath expr="//field[@name='order_line']/tree//field[@name='name']" position="after">
+                <field name="parent_section_id" 
+                       invisible="display_type != 'line_subsection'"
+                       domain="[('order_id', '=', parent.id), ('display_type', '=', 'line_section')]"/>
+                <field name="subsection_total" 
+                       invisible="display_type != 'line_subsection'"
+                       widget="monetary"/>
+            </xpath>
+            
+            <!-- Style subsections differently -->
+            <xpath expr="//field[@name='order_line']/tree" position="attributes">
+                <attribute name="decoration-info">display_type == 'line_subsection'</attribute>
+                <attribute name="decoration-bf">display_type in ('line_section', 'line_subsection')</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Extend Sale Order Tree View -->
+    <record id="view_quotation_tree_subsection" model="ir.ui.view">
+        <field name="name">sale.order.tree.subsection</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree"/>
+        <field name="arch" type="xml">
+            <!-- No specific changes needed for tree view -->
+        </field>
+    </record>
+
+    <!-- Add menu item for better organization -->
+    <menuitem id="menu_quotation_subsections"
+              name="Quotation Subsections"
+              parent="sale.sale_menu_root"
+              sequence="10"
+              groups="sales_team.group_sale_manager"/>
+
+</odoo>
