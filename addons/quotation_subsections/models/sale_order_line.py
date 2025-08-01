@@ -5,12 +5,11 @@ from odoo.tools.translate import _
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
-    display_type = fields.Selection(
-        selection_add=[
-            ('line_subsection', 'Subsection'),
-        ],
-        ondelete={'line_subsection': 'cascade'}
-    )
+    display_type = fields.Selection([
+        ('line_section', 'Section'),
+        ('line_note', 'Note'),
+        ('line_subsection', 'Subsection'),
+    ], string='Display Type', help="Technical field used to differentiate normal lines from sections, notes and subsections.")
     
     parent_section_id = fields.Many2one(
         'sale.order.line',

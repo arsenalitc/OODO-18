@@ -6,9 +6,9 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
-            <!-- Add subsection option to the order lines -->
-            <xpath expr="//field[@name='order_line']/tree//field[@name='display_type']" position="attributes">
-                <attribute name="selection">[('line_section', 'Section'), ('line_subsection', 'Subsection'), ('line_note', 'Note')]</attribute>
+            <!-- Add display_type field if it doesn't exist, or modify existing one -->
+            <xpath expr="//field[@name='order_line']/tree//field[@name='name']" position="before">
+                <field name="display_type" optional="hide"/>
             </xpath>
             
             <!-- Add parent section field for subsections -->
